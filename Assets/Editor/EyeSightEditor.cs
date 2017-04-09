@@ -33,9 +33,9 @@ public class EyeSightEditor : Editor {
 	}
 
 	private float DrawViewDistance(Vector3 origin, Vector3 direction) {
-		var coneCapPosition = origin + direction * viewDistanceProperty.floatValue;
+		var handlePosition = origin + direction * viewDistanceProperty.floatValue;
 		Handles.color = Color.yellow;
-		var position = Handles.FreeMoveHandle (coneCapPosition, Quaternion.identity, 0.15f, new Vector3 (0.5f, 0.5f, 0.5f), Handles.DotCap);
+		var position = Handles.FreeMoveHandle (handlePosition, Quaternion.identity, 0.15f, new Vector3 (0.5f, 0.5f, 0.5f), Handles.DotCap);
 
 		return Vector3.Distance (position, origin);
 	}
@@ -44,7 +44,7 @@ public class EyeSightEditor : Editor {
 		Handles.color = new Color (0, 1, 1, 0.25f);
 		Handles.DrawSolidArc (eyeSight.transform.position, 
 			eyeSight.transform.up, 
-			eyeSight.transform.forward, 
+			eyeSight.transform.forward,
 			viewAngleProperty.floatValue / 2, 
 			viewDistanceProperty.floatValue
 		);
