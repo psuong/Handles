@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 [CustomEditor(typeof(EyeSight))]
 public class EyeSightEditor : Editor {
@@ -26,8 +27,8 @@ public class EyeSightEditor : Editor {
 		DrawSolidArc ();
 		var distance = DrawViewDistance (eyeSight.transform.position, eyeSight.transform.forward);
 
-        var positiveAngle = DrawViewAngle(eyeSight.transform.position, eyeSight.transform.position + Vector3.forward * eyeSight.viewDistance, eyeSight.transform.forward, eyeSight.viewAngle);
-        var negativeAngle = DrawViewAngle(eyeSight.transform.position, eyeSight.transform.position + Vector3.forward * eyeSight.viewDistance, eyeSight.transform.forward, -eyeSight.viewAngle);
+        var positiveAngle = DrawViewAngle(eyeSight.transform.position, eyeSight.transform.position + Vector3.forward * eyeSight.viewDistance, eyeSight.transform.forward * viewDistanceProperty.floatValue, eyeSight.viewAngle);
+        var negativeAngle = DrawViewAngle(eyeSight.transform.position, eyeSight.transform.position + Vector3.forward * eyeSight.viewDistance, eyeSight.transform.forward * viewDistanceProperty.floatValue, -eyeSight.viewAngle);
 
 		if (EditorGUI.EndChangeCheck()) {
 			serializedObject.Update ();
@@ -62,6 +63,7 @@ public class EyeSightEditor : Editor {
         var returnedAngle = Mathf.Acos(alpha) * Mathf.Rad2Deg;
 
         Handles.Label(position, string.Format("Angle: {0}", returnedAngle * 2));
+		Handles.Label(forward, string.Format("Distance: {0}", viewDistanceProperty.floatValue));
         return returnedAngle;
     }
 
