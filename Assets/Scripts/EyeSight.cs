@@ -8,6 +8,7 @@ public class EyeSight : MonoBehaviour {
 	public float viewAngle = 160f;
 	public float viewDistance = 20f;
 
+    /*
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
 
@@ -22,4 +23,5 @@ public class EyeSight : MonoBehaviour {
         position = direction + transform.position;
         Gizmos.DrawSphere(position, 0.3f);
     }
+    */
 }
