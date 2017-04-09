@@ -40,6 +40,10 @@ public class EyeSightEditor : Editor {
 		return Vector3.Distance (position, origin);
 	}
 
+    private float DrawViewAngle(Vector3 origin, Vector3 destination) {
+        throw new System.NotImplementedException();
+    }
+
 	private void DrawSolidArc() {
 		Handles.color = new Color (0, 1, 1, 0.25f);
 		Handles.DrawSolidArc (eyeSight.transform.position, 
